@@ -1,0 +1,59 @@
+<div class="row well">
+  <div class="col-md-12">
+    <form action="">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Enter Username ..." [(ngModel)]="username" name="username"
+               (keyup)="search()">
+      </div>
+    </form>
+  </div>
+</div>
+<div *ngIf="user">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{user.name}}</h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-3 ">
+          <img class="img-thumbnail" height="200px" src="{{user.avatar_url}}">
+        </div>
+        <div class="col-md-8 col-md-offset-1">
+          <div class="stats">
+            <div class="label label-default">{{user.public_repos}} Public repos</div>
+            <div class="label label-default">{{user.followers}} Followers</div>
+            <div class="label label-default">{{user.following}} Following</div>
+          </div>
+          <br>
+          <ul class="list-group">
+            <li class="list-group-item">Username : {{ user.login}}</li>
+            <li class="list-group-item">Email : {{user.email}}</li>
+            <li class="list-group-item">Member Since : {{user.created_at}}</li>
+            <li class="list-group-item">Blog : {{user.blog}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">User Repos</h3>
+    </div>
+    <div class="panel-body">
+      <div *ngFor="let repo of repos">
+        <div class="row">
+          <div class="col-md-9">
+            <h4><a target="_blank" href="{{repo.html_url}}">{{repo.name}}</a></h4>
+            <p>{{repo.description}}</p>
+          </div>
+          <div class="col-md-3">
+            <span class="label label-default">{{repo.watchers}} Watchers</span>
+            <span class="label label-primary">{{repo.forks}} Forks</span>
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+  </div>
+</div>
